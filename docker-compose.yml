@@ -1,0 +1,93 @@
+version: '3.2'
+services:
+
+  db:
+    container_name: db.vonmo_trade.test
+    image: elzor/vonmo_trade_pg:1.0
+    restart: always
+    environment:
+      - PGDATA=/var/lib/postgresql/data
+      - PROJECT_SYSTEM_DB=vtrade_system
+      - PROJECT_USERS_DB=vtrade_users
+      - PROJECT_STORAGE_DB=vtrade_storage
+      - PROJECT_USER=vtrade
+      - POSTGRES_PASSWORD=tieph3ziu2euGhi
+    expose:
+      - 5432
+    networks:
+      - backend
+
+  auth:
+    container_name: auth.vonmo_trade.test
+    image: elzor/vonmo_trade_tarantool:1.0
+    restart: always
+    command: tarantool /opt/tarantool/auth/app.lua
+    environment:
+      - TARANTOOL_USER_NAME=dev
+      - TARANTOOL_USER_PASSWORD=dev
+    expose:
+      - 3301
+      - 8800
+    networks:
+      - backend
+
+  book:
+    container_name: book.vonmo_trade.test
+    image: elzor/vonmo_trade_tarantool:1.0
+    restart: always
+    command: tarantool /opt/tarantool/book/app.lua
+    environment:
+      - TARANTOOL_USER_NAME=dev
+      - TARANTOOL_USER_PASSWORD=dev
+    expose:
+      - 3301
+      - 8800
+    networks:
+      - backend
+
+  account:
+    container_name: account.vonmo_trade.test
+    image: elzor/vonmo_trade_tarantool:1.0
+    restart: always
+    command: tarantool /opt/tarantool/account/app.lua
+    environment:
+      - TARANTOOL_USER_NAME=dev
+      - TARANTOOL_USER_PASSWORD=dev
+    expose:
+      - 3301
+      - 8800
+    networks:
+      - backend
+
+  demo:
+    container_name: demo.vonmo_trade.test
+    image: elzor/vonmo_trade_demo:1.0
+    restart: always
+    depends_on:
+      - db
+      - auth
+      - book
+      - account
+    expose:
+      - 8080
+      - 8082
+    networks:
+      - backend
+
+  proxy:
+    container_name: proxy.vonmo_trade.test
+    image: elzor/vonmo_trade_proxy:1.0
+    restart: always
+    expose:
+      - 80
+    ports:
+      - 80:80
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
