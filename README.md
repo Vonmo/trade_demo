@@ -41,5 +41,5 @@ Resources:
     * [Orders. Types and processing features](https://www.vonmo.com/en/blog/vonmo-trade-experiment-orders-types-and-processing-features/)
     * [Order book. Processing and storing trade info](https://www.vonmo.com/en/blog/vonmo-trade-experiment-order-book-processing-and-storing-trade-info/)
     * [Stock charts](https://www.vonmo.com/en/blog/vonmo-trade-experiment-stock-charts/)
-    * PUT HERE LINK
+    * [5 things I wish I knew before writing an financial exchange](https://www.vonmo.com/en/blog/5-things-i-wish-i-knew-before-writing-an-financial-exchange/)
 * [WebAPI Documentation](https://www.vonmo.com/docs/trade-front/v1.0/intro/)
