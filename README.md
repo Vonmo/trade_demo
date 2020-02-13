@@ -5,6 +5,7 @@ Demo includes more than 20 active markets with market makers.
 
 <details>
   <summary>Screenshots</summary>
+  
   <a href="https://www.vonmo.com/pub/screens/exchange/markets.png" target="_blank">Markets list</a>
   
   <a href="https://www.vonmo.com/pub/screens/exchange/exchange.png" target="_blank">Exchange</a>
